@@ -5,13 +5,17 @@ This is the source code for my portfolio page, hosted at glyphforged.com. In the
 ## Build notes
 For each build, these steps should be followed.
 
-Pull down trunk from `/var/www/glyphforged`
+Pull down trunk to `/var/www/glyphforged`
 
 Clean up the install, build, and run.
 ```
 npm ci
 npm run build
-npm start
+```
+
+Test with `npm start` to ensure prod works, then restart pm2 process.
+```
+pm2 restart glyphforged
 ```
 
 
