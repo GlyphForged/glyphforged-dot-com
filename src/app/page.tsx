@@ -1,5 +1,6 @@
-import Image from "next/image"
-import styles from "./page.module.css"
+import Image from 'next/image';
+import styles from './page.module.css';
+import ComingSoon from './_components/coming-soon';
 
 export default function Home() {
   return (
@@ -11,20 +12,38 @@ export default function Home() {
           height={512}
           alt="GlyphForged Logo"
         />
-        <center>
-          <h3 className={styles.comingsoon}>Coming Soon...</h3>
-        </center>
+        <ComingSoon />
       </main>
       <footer className={styles.footer}>
-        <a>
-          <img className={styles.github_logo} src="/logos/github-mark-white.svg" alt="Github Logo"/>
+        <a
+          href="https://github.com/GlyphForged"
+          target="_blank"
+          rel="noopener">
+          <div className={styles.footer_logo}>
+            <Image
+              src="/logos/github-mark-white.svg"
+              alt="Github Logo"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
           Fork me on GitHub
         </a>
-        <a>
-          <img className={styles.itch_logo} src="/logos/itchio-textless-white.svg" alt="Itch Logo"/>
+        <a
+          href="https://glyphforged.itch.io/"
+          target="_blank"
+          rel="noopener">
+          <div className={styles.footer_logo}>
+            <Image
+              src="/logos/itchio-textless-white.svg"
+              alt="Itch Logo"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
           Play my games on Itch
         </a>
-        </footer>
+      </footer>
     </div>
   );
 }
