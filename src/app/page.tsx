@@ -1,5 +1,6 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from 'next/image';
+import styles from './page.module.css';
+import ComingSoon from '../components/coming-soon';
 
 export default function Home() {
   return (
@@ -11,12 +12,13 @@ export default function Home() {
           height={512}
           alt="GlyphForged Logo"
         />
-        <center>
-          <h3 className={styles.comingsoon}>Coming Soon...</h3>
-        </center>
+        <ComingSoon />
       </main>
       <footer className={styles.footer}>
-        <a href="https://github.com/GlyphForged" target="_blank">
+        <a
+          href="https://github.com/GlyphForged"
+          target="_blank"
+          rel="noopener">
           <div className={styles.footer_logo}>
             <Image
               src="/logos/github-mark-white.svg"
@@ -27,7 +29,10 @@ export default function Home() {
           </div>
           Fork me on GitHub
         </a>
-        <a href="https://glyphforged.itch.io/" target="_blank">
+        <a
+          href="https://glyphforged.itch.io/"
+          target="_blank"
+          rel="noopener">
           <div className={styles.footer_logo}>
             <Image
               src="/logos/itchio-textless-white.svg"

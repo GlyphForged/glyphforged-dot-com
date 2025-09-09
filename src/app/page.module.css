@@ -67,10 +67,7 @@
   height: 48px;
   padding: 0 20px;
   border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -108,9 +105,9 @@ a.secondary {
 }
 
 .footer_logo {
-  width:1.2rem;
-  height:1.2rem;
-  position:relative;
+  width: 1.2rem;
+  height: 1.2rem;
+  position: relative;
 }
 
 /* Enable hover only on non-touch devices */
@@ -166,4 +163,3 @@ a.secondary {
     justify-content: center;
   }
 }
-
