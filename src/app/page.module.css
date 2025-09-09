@@ -107,6 +107,18 @@ a.secondary {
   flex-shrink: 0;
 }
 
+.github_logo {
+  width: 1.5rem;
+}
+
+.itch_logo {
+  width: 1.5rem;
+}
+
+.comingsoon {
+
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
@@ -122,6 +134,7 @@ a.secondary {
   .footer a:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
+    cursor: pointer;
   }
 }
 
@@ -160,8 +173,3 @@ a.secondary {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-}

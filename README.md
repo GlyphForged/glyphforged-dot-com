@@ -1,22 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GlyphForged.com
 
-## Getting Started
+This is the source code for my portfolio page, hosted at glyphforged.com. In the interest of both reminding myself how my code works, and allowing this site to serve as a portfolio project in and of itself, I have made this repo publicly available for review. I am not responsible for whatever madness you might succumb to should you choose to dig through this.
+
+## Build notes
+For each build, these steps should be followed.
+Clean up the install and build
+```
+npm ci
+npm run build
+```
+
+tarball up the build artifacts
+```
+tar -czf glyphforged-$(date +%F).tar.gz \
+> .next/standalone \
+> .next/static \
+> public 2>/dev/null
+```
+
+copy them to the droplet
+```
+scp builds/myurl-*.tar.gz user@DO_IP:/home/USER/glyphforged/
+```
+
+then SSH in to the droplet and unpack the tarball
+```
+sudo tar -xzf NEW_BUILD.tar.gz -C /var/www/glyphforged
+```
+
+## Standardization
+
+### Colors
+Dark Background: #29313d
+Light background: #9caec9
+Purple: #480a5c
+Light Gray: #cccccc
+Dark Gray: #333333
+
+## Next.js specific notes
+
+bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
