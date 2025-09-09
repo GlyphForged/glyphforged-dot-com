@@ -4,29 +4,16 @@ This is the source code for my portfolio page, hosted at glyphforged.com. In the
 
 ## Build notes
 For each build, these steps should be followed.
-Clean up the install and build
+
+Pull down trunk from `/var/www/glyphforged`
+
+Clean up the install, build, and run.
 ```
 npm ci
 npm run build
+npm start
 ```
 
-tarball up the build artifacts
-```
-tar -czf glyphforged-$(date +%F).tar.gz \
-> .next/standalone \
-> .next/static \
-> public 2>/dev/null
-```
-
-copy them to the droplet
-```
-scp builds/myurl-*.tar.gz user@DO_IP:/home/USER/glyphforged/
-```
-
-then SSH in to the droplet and unpack the tarball
-```
-sudo tar -xzf NEW_BUILD.tar.gz -C /var/www/glyphforged
-```
 
 ## Standardization
 
