@@ -20,12 +20,18 @@ pm2 restart glyphforged
 
 
 ## Standardization
+In the effort of keepint a cohesive feel, keeping standardization iformation here.
 
 ### Colors
+
 Dark Background: #29313d
+
 Light background: #9caec9
+
 Purple: #480a5c
+
 Light Gray: #cccccc
+
 Dark Gray: #333333
 
 ## Next.js specific notes
