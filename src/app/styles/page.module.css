@@ -107,10 +107,16 @@ a.secondary {
   flex-shrink: 0;
 }
 
-.footer_logo {
-  width:1.2rem;
-  height:1.2rem;
-  position:relative;
+.github_logo {
+  width: 1.5rem;
+}
+
+.itch_logo {
+  width: 1.5rem;
+}
+
+.comingsoon {
+
 }
 
 /* Enable hover only on non-touch devices */

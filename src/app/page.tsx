@@ -1,5 +1,5 @@
 import Image from "next/image"
-import styles from "./page.module.css"
+import styles from './page.module.css'
 
 export default function Home() {
   return (
@@ -16,12 +16,26 @@ export default function Home() {
         </center>
       </main>
       <footer className={styles.footer}>
-        <a>
-          <img className={styles.github_logo} src="/logos/github-mark-white.svg" alt="Github Logo"/>
+        <a href="https://github.com/GlyphForged" target="_blank">
+          <div className={styles.footer_logo}>
+            <Image
+              src="/logos/github-mark-white.svg"
+              alt="Github Logo"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
           Fork me on GitHub
         </a>
-        <a>
-          <img className={styles.itch_logo} src="/logos/itchio-textless-white.svg" alt="Itch Logo"/>
+        <a href="https://glyphforged.itch.io/" target="_blank">
+          <div className={styles.footer_logo}>
+            <Image
+              src="/logos/itchio-textless-white.svg"
+              alt="Itch Logo"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
           Play my games on Itch
         </a>
         </footer>
