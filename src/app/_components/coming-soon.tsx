@@ -14,7 +14,7 @@ const ComingSoon = () => {
 
   return (
     <div className="coming-soon">
-      <h3>Coming&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Soon{'.'.repeat(dotCount)}</h3>
+      <h3>Coming Soon{'.'.repeat(dotCount)}</h3>
     </div>
   );
 };

@@ -4,6 +4,8 @@ This is the source code for my portfolio page, hosted at glyphforged.com. In the
 
 ## Build notes
 
+Stop 'glyphforged' process in PM2: `pm2 stop glyphforged`
+
 Pull down trunk to `/var/www/glyphforged`
 
 Clean up the install, build, and run.
@@ -13,15 +15,11 @@ npm ci
 npm run build
 ```
 
-Test with `npm start` to ensure prod works, then restart pm2 process.
-
-```
-pm2 restart glyphforged
-```
+Optionally test with `npm start` to ensure prod works, then restart pm2 process: `pm2 start glyphforged`
 
 ## Standardization
 
-In the effort of keepint a cohesive feel, keeping standardization iformation here.
+In the effort of keeping a cohesive feel, keeping standardization information here.
 
 ### Colors
 

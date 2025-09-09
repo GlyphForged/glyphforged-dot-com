@@ -1,0 +1,33 @@
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: solid;
+  border-radius: 20px;
+  margin: 1.5vw 2.5vw;
+  padding: 0.75vw 1.5vw;
+  width: 20vw;
+  min-width: 275px;
+  height: 25vw;
+  min-height: 400px;
+  background-color: hsl(215, 20, 10);
+}
+
+.card h3 {
+  margin: 0.5rem 0;
+}
+
+.card:hover {
+  border-color: var(--pink);
+  box-shadow: 0 0 10px 5px var(--purple);
+}
+
+.card:hover h3 {
+  color: var(--pink);
+}
+
+.thumb {
+  aspect-ratio: 1/1;
+  width: 80%;
+  position: relative;
+}

@@ -1,0 +1,48 @@
+.projectPage {
+  margin: 2.5vw 5vw;
+}
+
+.projectPage h1 {
+  margin-bottom: 1rem;
+}
+
+.projectGrid {
+  margin: 2vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.returnLink {
+  margin-top: 3rem;
+  padding: 0.5rem;
+  width: fit-content;
+}
+
+.returnLink:hover {
+  color: var(--pink);
+  border: 1px solid var(--pink);
+  border-radius: 15px;
+}
+
+.groupSection {
+  margin-block: 0.5rem;
+}
+
+.groupTitle {
+  opacity: 0.9;
+}
+
+.groupNav {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1rem 2vw 0;
+}
+.groupNav a {
+  opacity: 0.8;
+}
+.groupNav a:hover {
+  opacity: 1;
+  color: var(--pink);
+}

@@ -4,14 +4,18 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #9caec9;
+  --foreground: #333333;
+  --purple: #480a5c;
+  --pink: #a50d66;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #29313d;
+    --foreground: #cccccc;
+    --purple: #480a5c;
+    --pink: #a50d66;
   }
 }
 
@@ -33,6 +37,7 @@ h1,
 h2,
 h3 {
   font-family: 'stormblade', sans-serif;
+  text-shadow: 2px 2px 3px black;
 }
 
 h1 {
