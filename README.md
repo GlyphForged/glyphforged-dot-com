@@ -24,11 +24,17 @@ In the effort of keeping a cohesive feel, keeping standardization information he
 ### Colors
 
 Dark Background: #29313d
+
 Dark Gray: #333333
+
 Light background: #9caec9
+
 Light Gray: #cccccc
+
 Purple: #a117cf
+
 Pink: #ee2b9d
+
 Blue: #3d6bf5
 
 ## ToDos
