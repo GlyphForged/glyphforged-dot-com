@@ -41,9 +41,15 @@
   padding-inline: 1rem;
 }
 
+.summary a {
+  margin: 0;
+  display: inline;
+  color: var(--blue);
+}
+
 .sourceCode {
-  margin: 1rem 2rem;
+  margin: 1rem 2rem 1rem 0;
   height: 500px;
   inline-size: 100%;
-  max-inline-size: 800px;
+  max-inline-size: 500px;
 }

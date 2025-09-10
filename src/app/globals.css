@@ -8,14 +8,16 @@
   --foreground: #333333;
   --purple: #480a5c;
   --pink: #a50d66;
+  --blue: #0a38c2;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #29313d;
     --foreground: #cccccc;
-    --purple: #480a5c;
-    --pink: #a50d66;
+    --purple: #a117cf;
+    --pink: #ee2b9d;
+    --blue: #3d6bf5;
   }
 }
 

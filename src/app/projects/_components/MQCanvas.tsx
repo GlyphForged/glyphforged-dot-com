@@ -48,10 +48,15 @@ export default function MQCanvas({
         <button onClick={toggleCode}>
           {showCode ? 'Hide' : 'Show'} Source Code
         </button>
-        {summary ? <div className={styles.summary}>{summary}</div> : null}
+        {summary ? (
+          <div
+            className={styles.summary}
+            dangerouslySetInnerHTML={{ __html: summary }}></div>
+        ) : null}
         {sourceCode && showCode ? (
           <iframe
             className={styles.sourceCode}
+            style={style}
             frameBorder="0"
             scrolling="no"
             allow="clipboard-write"
