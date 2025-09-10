@@ -10,7 +10,7 @@
   margin: 2vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: center;
 }
 
 .returnLink {
@@ -39,10 +39,22 @@
   flex-wrap: wrap;
   margin: 1rem 2vw 0;
 }
+
 .groupNav a {
   opacity: 0.8;
 }
+
 .groupNav a:hover {
   opacity: 1;
   color: var(--pink);
+}
+
+.individualProjectPage {
+  margin: 2vw;
+}
+
+.thumb {
+  aspect-ratio: 1/1;
+  max-width: 33vw;
+  position: relative;
 }

@@ -1,6 +1,7 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import styles from './page.module.css';
 import ComingSoon from './_components/coming-soon';
+import { Footer } from './_components/footer';
 
 export default function Home() {
   return (
@@ -14,36 +15,7 @@ export default function Home() {
         />
         <ComingSoon />
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://github.com/GlyphForged"
-          target="_blank"
-          rel="noopener">
-          <div className={styles.footer_logo}>
-            <Image
-              src="/logos/github-mark-white.svg"
-              alt="Github Logo"
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
-          Fork me on GitHub
-        </a>
-        <a
-          href="https://glyphforged.itch.io/"
-          target="_blank"
-          rel="noopener">
-          <div className={styles.footer_logo}>
-            <Image
-              src="/logos/itchio-textless-white.svg"
-              alt="Itch Logo"
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
-          Play my games on Itch
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }

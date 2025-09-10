@@ -1,3 +1,6 @@
+import { Footer } from './_components/footer';
+import Image from 'next/image';
+import styles from './page.module.css';
 import type { Metadata } from 'next';
 import './globals.css';
 

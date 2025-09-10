@@ -92,6 +92,8 @@ a.secondary {
   grid-row-start: 3;
   display: flex;
   gap: 24px;
+  justify-self: center;
+  margin-bottom: 2rem;
 }
 
 .footer a {

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import styles from './ProjectCard.module.css';
 import type { Project } from '../_data/projects';
 

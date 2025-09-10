@@ -1,9 +1,9 @@
 import styles from '../projects.module.css';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
-import { projects, getProjectBySlug } from '../_data/projects';
 import type { Metadata } from 'next';
+import { projects, getProjectBySlug } from '../_data/projects';
+import MQCanvas from '../_components/MQCanvas';
 
 export async function generateStaticParams() {
   // Pre-generate /projects/:slug for every project
@@ -31,20 +31,28 @@ export default async function ProjectPage({
   if (!project) return notFound(); // Falls through to not-found.tsx
 
   return (
-    <article>
+    <article className={styles.individualProjectPage}>
       <h1>{project.title}</h1>
-      <div className={styles.thumb}>
-        <Image
-          src={project.thumbnail}
-          alt={project.alt ?? `${project.title} thumbnail`}
-          width={256}
-          height={256}
-          sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
-          priority={false}
-        />
-      </div>
-      <p>{project.summary}</p>
       {/* TODO: Draw the rest of the fukken owl */}
+      {project.wasmDemos?.length ? (
+        <div className={styles.projectGrid}>
+          {project.wasmDemos.map((d, i) => (
+            <div key={d.id}>
+              <MQCanvas
+                title={d.title}
+                summary={d.summary}
+                src={d.src}
+                aspect={d.aspect}
+                height={d.height}
+                sourceCode={d.sourceCode}
+              />
+              {i < project.wasmDemos.length - 1 && <hr />}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No web demos yet.</p>
+      )}
       <div className={styles.returnLink}>
         <Link href="/projects">Back to Projects</Link>
       </div>

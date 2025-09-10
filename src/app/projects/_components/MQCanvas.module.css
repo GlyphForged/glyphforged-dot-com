@@ -1,0 +1,46 @@
+.wrapper {
+  justify-items: center;
+  min-width: 600px;
+  margin: 1rem 0;
+}
+
+.frame {
+  /* justify-self: center; */
+  position: relative;
+  width: 60vw;
+  max-width: 600px;
+  background: hsl(215 20% 10% / 0.6);
+  border: 2px solid var(--purple);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* aspect-ratio path: the div controls height; the iframe fills it */
+.frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.caption {
+  font-family: 'Stormblade', Arial, sans-serif;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
+
+.summary {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  width: 85vw;
+}
+
+.sourceCode {
+  margin: 1rem 2rem;
+  width: 70vw;
+  height: 500px;
+}
