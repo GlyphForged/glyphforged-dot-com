@@ -1,0 +1,13 @@
+.pageBlurb {
+  margin: 1.5rem 2.5rem 1.5rem 1.5rem;
+  width: 95%;
+}
+
+.pageBlurb a {
+  color: var(--blue);
+}
+
+.pageBlurb p {
+  width: 95%;
+  margin: 1rem 0.5rem;
+}
