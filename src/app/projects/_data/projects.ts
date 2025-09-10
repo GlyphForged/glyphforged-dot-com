@@ -51,6 +51,33 @@ export const projects: Project[] = [
         sourceCode:
           'https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FGlyphForged%2FLearnRust%2Fblob%2Ftrunk%2Fnature_of_code%2Fchapter0%2Fnoise_walker%2Fsrc%2Fmain.rs&style=base16%2Fgruvbox-dark-hard&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=500',
       },
+      {
+        id: 'perlingraph',
+        title: 'Perlin Noise Graph',
+        src: '/projectbins/perlingraph/perlin_graph.html',
+        summary: 'A one-dimensional view of Perlin noise. The sketch stacks four octaves of fractal Brownian motion (fBm) and scrolls through a horizontal slice of the data, producing a graph reminiscent of a stock ticker—or any time-series signal. Written in Rust with macroquad.',
+        aspect: '3/2',
+        width: 600,
+        sourceCode: '',
+      },
+      {
+        id: 'perlincloud',
+        title: 'Cloud Generation',
+        src: '/projectbins/perlincloud/perlin_cloud.html',
+        summary: 'Two-dimensional Perlin noise can generate rich textures. This demo renders animated “clouds” by sampling a 2-D fBm field. Written in Rust with macroquad.',
+        aspect: '3/2',
+        width: 600,
+        sourceCode: '',
+      },
+      {
+        id: 'perlinterrain',
+        title: 'Infinite Terrain Generation',
+        src: '/projectbins/perlinterrain/perlin_terrain.html',
+        summary: 'Similar to the "clouds" above, this terrain is generated with 2-D perlin noise. Mapping the perlin values to the height of the vertices in a flat mesh produces a seemingly infinite landscape.',
+        aspect: '3/2',
+        width: 600,
+        sourceCode: '',
+      },
     ],
   },
   {

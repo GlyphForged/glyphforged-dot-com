@@ -1,15 +1,14 @@
 import Link from 'next/link';
 import styles from './projects.module.css';
-import { projects } from './_data/projects';
+import { Project, projects } from './_data/projects';
 import ProjectCard from './_components/ProjectCard';
 
 export default async function ProjectsIndex() {
-  const GROUP_ORDER = ['noc', 'shaders', 'misc'] as const;
+  const GROUP_ORDER = ['noc', 'shaders',] as const;
   const LABELS = {
     noc: 'Nature of Code',
     shaders: 'Shaders',
-    // misc: 'Miscellaneous',
-  } as const;
+  };
 
   const grouped = new Map<string, Project[]>();
   for (const g of GROUP_ORDER) grouped.set(g, []);
