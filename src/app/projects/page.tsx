@@ -4,7 +4,7 @@ import { Project, projects } from './_data/projects';
 import ProjectCard from './_components/ProjectCard';
 
 export default async function ProjectsIndex() {
-  const GROUP_ORDER = ['noc', 'shaders',] as const;
+  const GROUP_ORDER = ['noc', 'shaders'] as const;
   const LABELS = {
     noc: 'Nature of Code',
     shaders: 'Shaders',
@@ -50,7 +50,8 @@ export default async function ProjectsIndex() {
               className={styles.groupSection}>
               <h2 className={styles.groupTitle}>{LABELS[key]}</h2>
 
-              <div className={styles.projectGrid}>
+              <div
+                className={`${styles.projectGrid} ${styles['projectGrid--flow']}`}>
                 {list.map((p) => (
                   <Link
                     key={p.slug}

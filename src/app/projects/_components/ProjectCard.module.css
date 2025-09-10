@@ -4,13 +4,21 @@
   justify-content: center;
   border: solid;
   border-radius: 20px;
-  margin: 1.5vw 2.5vw;
-  padding: 0.75vw 1.5vw;
-  width: 20vw;
-  min-width: 275px;
-  height: 25vw;
+  margin: 0.75rem 1rem;
+  padding: 0.75rem 1rem;
+  width: 80%;
+  min-width: 0;
+  height: auto;
   min-height: 400px;
-  background-color: hsl(215, 20, 10);
+  background-color: hsl(215, 20%, 10%);
+}
+
+@media (min-width: 800px) {
+  .card {
+    width: 20vw;
+    min-width: 275px;
+    height: 25vw;
+  }
 }
 
 .card h3 {

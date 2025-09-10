@@ -35,7 +35,8 @@ export default async function ProjectPage({
       <h1>{project.title}</h1>
       {/* TODO: Draw the rest of the fukken owl */}
       {project.wasmDemos?.length ? (
-        <div className={styles.projectGrid}>
+        <div
+          className={`${styles.projectGrid} ${styles['projectGrid--stack']}`}>
           {project.wasmDemos.map((d, i) => (
             <div key={d.id}>
               <MQCanvas

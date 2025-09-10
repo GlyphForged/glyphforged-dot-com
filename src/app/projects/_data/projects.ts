@@ -93,6 +93,48 @@ export const projects: Project[] = [
     category: 'noc',
     thumbnail: '/project-thumbs/Chapter1-thumb.png',
     tags: ['noc', 'nature of code', 'macroquad', 'rust'],
+    wasmDemos: [
+      {
+        id: 'threedeeball',
+        title: '3D Bouncing Ball',
+        src: '/projectbins/threedeeball/three_dee_ball.html',
+        summary:
+          'All of the vector work done up until now has been in 2 dimensions. This example showcases 3-dimensional vectors in a simple sketch. Written in Rust with macroquad.',
+        aspect: '3/2',
+        width: 600,
+        sourceCode: '',
+      },
+      {
+        id: 'accelerator',
+        title: 'Accelerator',
+        src: '/projectbins/accelerator/accelerator.html',
+        summary:
+          'This sketch attempts a simple 2D physics simulation. Pressing the Up arrow on your keyboard will cause the mover to accelerate, pressing the Down arrow will cause the mover to decelerate. If your key-presses are not being picked up, click inside the example "window" to allow the sketch to capture your key-presses. (Does not work on mobile.) Written in Rust with macroquad.',
+        aspect: '3/2',
+        width: 600,
+        sourceCode: '',
+      },
+      {
+        id: 'balloon',
+        title: 'Balloon',
+        src: '/projectbins/balloon/balloon.html',
+        summary:
+          'This example combines Exercises 2.1, 2.3, & 2.4. Utilizing a simple physics simulation, I\'ve filled the balloon with helium and let it loose in the space. I am also creating a "wind" force, which is generated via a 3-octave perlin noise value. The edges exert an invisible force which pushes back against the balloon when hitting the top or side edges.',
+        aspect: '3/2',
+        width: 600,
+        sourceCode: '',
+      },
+      {
+        id: 'friction',
+        title: 'Friction',
+        src: '/projectbins/friction/friction.html',
+        summary:
+          "This exercise combines 2.6, 2.7, & 2.11 into one. In this example, I have a series of balls, and a series of forces being applied to these balls. There is a constant gravity force present, a wind force when Spacebar is pressed, and friction while the balls roll along the floor. In addition, you can grab and toss the balls by clicking on them. Note that you can grab and hold multiple balls at once, which allows you to see how their mass impacts the forces of friction and/or wind. Each ball's radius is a product of its mass.",
+        aspect: '3/2',
+        width: 600,
+        sourceCode: '',
+      },
+    ],
   },
   {
     slug: 'noc-3-4',
@@ -109,6 +151,19 @@ export const projects: Project[] = [
     category: 'shaders',
     thumbnail: '/project-thumbs/shaderdemo.png',
     tags: ['shaders', 'macroquad', 'rust'],
+    wasmDemos: [
+      {
+        id: 'shader_demo',
+        title: 'Macroquad Shader Demo',
+        src: '/projectbins/shader_demo/shader_demo.html',
+        summary: `This example is a simple fractal shader using lessons learned from ${(
+          <a href="https://www.shadertoy.com/user/kishimisu">kishimisu</a>
+        )} and <a href="https://iquilezles.org/">Inigo Quilez</a> utilizing SDFs and some oscillation to produce a fun effect. This also serves as a simple shader template I can quickly throw any fullscreen shader demos into by replacing the fragment shader as  needed. The vertex shader for this is a simple normalization algorithm.`,
+        aspect: '3/2',
+        width: 600,
+        sourceCode: '',
+      },
+    ],
   },
 ];
 

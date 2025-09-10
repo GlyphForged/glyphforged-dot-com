@@ -1,6 +1,10 @@
 .projectPage {
-  margin: 2.5vw 5vw;
+  margin: 1.5rem 2.5rem 1.5rem 0.5rem;
   width: 100%;
+}
+
+.projectPage p {
+  width: 95%;
 }
 
 .projectPage h1 {
@@ -8,14 +12,34 @@
 }
 
 .projectGrid {
-  margin: 2vw;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .projectGrid--flow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 0;
+  }
+}
+
+.projectGrid--stack {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1rem;
+}
+
+.projectGrid a {
+  display: block;
+  margin: 0.5rem;
 }
 
 .returnLink {
-  margin-top: 3rem;
+  margin: 2rem 0 2rem 3rem;
   padding: 0.5rem;
   width: fit-content;
 }
