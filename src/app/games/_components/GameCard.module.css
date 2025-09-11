@@ -1,0 +1,28 @@
+.card {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  border: solid;
+  border-radius: 20px;
+  margin: 0.75rem 1rem;
+  padding: 0.75rem 1rem;
+  background-color: hsl(215, 20%, 10%);
+}
+
+.card h3 {
+  margin: 0.5rem 0;
+}
+
+.card:hover {
+  border-color: var(--pink);
+  box-shadow: 0 0 10px 5px var(--purple);
+}
+
+.card:hover h3 {
+  color: var(--pink);
+}
+
+.thumb {
+  aspect-ratio: 1/1;
+  width: 90%;
+  position: relative;
+}

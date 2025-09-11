@@ -1,6 +1,6 @@
 import Header from '../_components/Header';
 import { Footer } from '../_components/Footer';
-import styles from './games.module.css';
+import styles from './musings.module.css';
 
 export const viewport = {
   width: 'device-width',

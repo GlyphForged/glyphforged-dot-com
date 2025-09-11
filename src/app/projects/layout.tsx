@@ -1,5 +1,6 @@
+import Header from '../_components/Header';
+import { Footer } from '../_components/Footer';
 import styles from './projects.module.css';
-import { Footer } from '../_components/footer';
 
 export const viewport = {
   width: 'device-width',
@@ -14,6 +15,7 @@ export default function ProjectsLayout({
   // TODO: Add a section banner, tabs, breadcrumbs, etc.
   return (
     <section className={styles.projectPage}>
+      <Header />
       {children}
       <Footer />
     </section>

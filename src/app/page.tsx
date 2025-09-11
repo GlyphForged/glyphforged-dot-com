@@ -1,7 +1,7 @@
 import Image from 'next/legacy/image';
 import styles from './page.module.css';
-import ComingSoon from './_components/coming-soon';
-import { Footer } from './_components/footer';
+import ComingSoon from './_components/ComingSoon';
+import { Footer } from './_components/Footer';
 
 export default function Home() {
   return (

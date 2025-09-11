@@ -1,5 +1,5 @@
 .projectPage {
-  margin: 1.5rem 2.5rem 1.5rem 1.5rem;
+  margin: 6rem 2.5rem 1.5rem 1.5rem;
   width: 100%;
 }
 
@@ -39,15 +39,18 @@
 }
 
 .returnLink {
-  margin: 2rem 0 2rem 3rem;
+  justify-self: start;
+  max-width: 125px; /*ios weirdness fix*/
+  margin: 2rem 1rem;
   padding: 0.5rem;
-  width: fit-content;
+  border: 1px solid;
+  border-radius: 20px;
+  color: var(--blue);
 }
 
 .returnLink:hover {
   color: var(--pink);
-  border: 1px solid var(--pink);
-  border-radius: 15px;
+  box-shadow: 0 0 10px 5px var(--purple);
 }
 
 .groupSection {

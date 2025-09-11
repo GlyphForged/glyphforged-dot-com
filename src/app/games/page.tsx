@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import styles from './games.module.css';
 import { Game, games } from './_data/games';
+import GameCard from './_components/GameCard';
 
 export default async function GamesIndex() {
   return (
-    <div>
+    <div className={styles.gamesPage}>
       <h1>Games</h1>
       <div className={styles.pageBlurb}>
         <p>
@@ -28,6 +29,22 @@ export default async function GamesIndex() {
           level I am happy with.
         </p>
       </div>
+      <div className={styles.gameGrid}>
+        <div className={styles.cardContainer}>
+          {games.map((g) => (
+            <Link
+              key={g.slug}
+              href={`/games/${g.slug}`}>
+              <GameCard game={g} />
+            </Link>
+          ))}
+        </div>
+      </div>
+      <Link
+        className={styles.returnLink}
+        href="/">
+        Back Home
+      </Link>
     </div>
   );
 }

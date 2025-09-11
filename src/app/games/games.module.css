@@ -1,3 +1,6 @@
+.gamesPage {
+  margin: 6rem 2.5rem 1.5rem 1.5rem;
+}
 .pageBlurb {
   margin: 1.5rem 2.5rem 1.5rem 1.5rem;
   width: 95%;
@@ -7,7 +10,71 @@
   color: var(--blue);
 }
 
+.pageBlurb a:hover {
+  color: var(--pink);
+}
+
 .pageBlurb p {
   width: 95%;
   margin: 1rem 0.5rem;
+}
+
+.gameGrid {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.gameGrid a {
+  display: block;
+  height: 100%;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  }
+}
+
+.individualGamePage {
+  margin: 1.5rem 2.5rem;
+  display: grid;
+  justify-content: center;
+}
+
+.individualGamePage h1 {
+  margin: 1rem 0;
+}
+
+.returnLink {
+  justify-self: start;
+  margin: 2rem 1rem;
+  padding: 0.5rem;
+  border: 1px solid;
+  border-radius: 20px;
+  color: var(--blue);
+}
+
+.returnLink:hover {
+  color: var(--pink);
+  box-shadow: 0 0 10px 5px var(--purple);
+}
+
+.gameSummary {
+  margin: 1rem;
+}
+
+.sourceCode {
+  margin: 0 1rem;
+}
+
+.sourceCode a {
+  color: var(--blue);
 }
