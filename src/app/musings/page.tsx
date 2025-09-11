@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import styles from './musings.module.css';
-import { Game, games } from './_data/games';
 import ComingSoon from '../_components/ComingSoon';
 
 export default async function GamesIndex() {

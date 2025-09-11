@@ -38,8 +38,8 @@ export default async function GamesPage({
       <h1>{game.title}</h1>
       {isMobile ? (
         <p className={styles.mobileNotice}>
-          This game wasn't designed for mobile, so the live embed is disabled
-          here. Try it on desktop/laptop for the best experience.
+          This game wasn&apos;t designed for mobile, so the live embed is
+          disabled here. Try it on desktop/laptop for the best experience.
         </p>
       ) : game.embed ? (
         <div

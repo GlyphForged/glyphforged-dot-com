@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './games.module.css';
-import { Game, games } from './_data/games';
+import games from './_data/games';
 import GameCard from './_components/GameCard';
 
 export default async function GamesIndex() {
