@@ -63,9 +63,6 @@ export default async function ProjectsIndex() {
             </section>
           );
         })}
-        <div className={styles.returnLink}>
-          <Link href="/">Return Home</Link>
-        </div>
       </div>
     </div>
   );

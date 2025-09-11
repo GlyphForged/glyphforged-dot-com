@@ -1,6 +1,6 @@
 import Image from 'next/legacy/image';
 import styles from './page.module.css';
-import ComingSoon from './_components/ComingSoon';
+import NavCard from './_components/NavCard';
 import { Footer } from './_components/Footer';
 
 export default function Home() {
@@ -13,7 +13,27 @@ export default function Home() {
           height={512}
           alt="GlyphForged Logo"
         />
-        <ComingSoon />
+        <NavCard
+          className={styles.navCard}
+          href="/games"
+          title="Games"
+          summary="Games written by me or with my help."
+          icon="/logos/game-console.png"
+        />
+        <NavCard
+          className={styles.navCard}
+          href="/projects"
+          title="Projects"
+          summary="Software projects, websites, etc."
+          icon="/logos/anvil.png"
+        />
+        <NavCard
+          className={styles.navCard}
+          href="/musings"
+          title="Musings"
+          summary="Post-mortems, lessons learned, and other no sabo musings."
+          icon="/logos/article.png"
+        />
       </main>
       <Footer />
     </div>

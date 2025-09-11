@@ -10,11 +10,6 @@ export default async function GamesIndex() {
       <div className={styles.CSDiv}>
         <ComingSoon />
       </div>
-      <Link
-        className={styles.returnLink}
-        href="/">
-        Back Home
-      </Link>
     </div>
   );
 }

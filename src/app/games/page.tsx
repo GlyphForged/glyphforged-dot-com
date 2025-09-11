@@ -40,11 +40,6 @@ export default async function GamesIndex() {
           ))}
         </div>
       </div>
-      <Link
-        className={styles.returnLink}
-        href="/">
-        Back Home
-      </Link>
     </div>
   );
 }

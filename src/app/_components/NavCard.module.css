@@ -1,0 +1,36 @@
+.card {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 1rem;
+  border: 2px solid var(--foreground);
+  border-radius: 20px;
+  box-shadow: 0 0 5px var(--foreground);
+  padding: 0.5rem;
+  /* TODO: Transitions */
+}
+
+.summary {
+  padding: 0 0 1rem 2rem;
+}
+
+.iconContainer {
+  position: relative;
+  aspect-ratio: 1;
+  width: 75px;
+  height: auto;
+}
+
+.title {
+  margin: 1rem 2rem;
+}
+
+.card:hover,
+.card:focus-visible {
+  box-shadow: 0 0 15px var(--purple);
+  border-color: var(--pink);
+}
+
+.card:hover .title,
+.card:focus-visible .title {
+  color: var(--pink);
+}

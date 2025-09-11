@@ -16,7 +16,9 @@ export default function GameCard({ game }: { game: Game }) {
           />
         </div>
       )}
-      <p dangerouslySetInnerHTML={{ __html: game.summary }}></p>
+      <p
+        className={styles.summary}
+        dangerouslySetInnerHTML={{ __html: game.summary }}></p>
     </article>
   );
 }

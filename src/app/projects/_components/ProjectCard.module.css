@@ -10,6 +10,8 @@
   min-width: 0;
   height: auto;
   min-height: 400px;
+  max-height: 550px;
+  max-width: 400px;
   background-color: hsl(215, 20%, 10%);
 }
 
@@ -22,7 +24,11 @@
 }
 
 .card h3 {
-  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+}
+
+.card p {
+  margin: 0.5rem 1rem;
 }
 
 .card:hover {
@@ -38,4 +44,5 @@
   aspect-ratio: 1/1;
   width: 80%;
   position: relative;
+  margin: 1rem;
 }
