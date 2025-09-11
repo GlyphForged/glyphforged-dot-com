@@ -39,6 +39,5 @@ Blue: #3d6bf5
 
 ## ToDos
 
-- Game Section
 - Musings Section
 - Visual upgrades
