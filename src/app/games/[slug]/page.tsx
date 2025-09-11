@@ -30,7 +30,7 @@ export default async function GamesPage({
   const game = getGameBySlug(slug);
   if (!game) return notFound(); // Falls through to not-found.tsx
 
-  const ua = headers().get('user-agent');
+  const ua = (await headers()).get('user-agent');
   const isMobile = isMobileUA(ua);
 
   return (
