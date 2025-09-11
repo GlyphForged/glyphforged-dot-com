@@ -1,0 +1,89 @@
+.projectPage {
+  margin: 6rem 2.5rem 1.5rem 1.5rem;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.projectPage p {
+  width: 95%;
+}
+
+.projectPage h1 {
+  margin-bottom: 1rem;
+}
+
+.projectGrid {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .projectGrid--flow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 0;
+  }
+}
+
+.projectGrid--stack {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1rem;
+}
+
+.projectGrid a {
+  display: block;
+  margin: 0.5rem;
+}
+
+.returnLink {
+  justify-self: start;
+  max-width: 125px; /*ios weirdness fix*/
+  margin: 2rem 1rem;
+  padding: 0.5rem;
+  border: 1px solid;
+  border-radius: 20px;
+  color: var(--blue);
+}
+
+.returnLink:hover {
+  color: var(--pink);
+  box-shadow: 0 0 10px 5px var(--purple);
+}
+
+.groupSection {
+  margin-block: 0.5rem;
+}
+
+.groupTitle {
+  opacity: 0.9;
+}
+
+.groupNav {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1rem 2vw 0;
+}
+
+.groupNav a {
+  opacity: 0.8;
+}
+
+.groupNav a:hover {
+  opacity: 1;
+  color: var(--pink);
+}
+
+.individualProjectPage {
+  margin: 2vw;
+}
+
+.thumb {
+  aspect-ratio: 1/1;
+  max-width: 33vw;
+  position: relative;
+}

@@ -1,6 +1,7 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import styles from './page.module.css';
-import ComingSoon from './_components/coming-soon';
+import NavCard from './_components/NavCard';
+import { Footer } from './_components/Footer';
 
 export default function Home() {
   return (
@@ -12,38 +13,29 @@ export default function Home() {
           height={512}
           alt="GlyphForged Logo"
         />
-        <ComingSoon />
+        <NavCard
+          className={styles.navCard}
+          href="/games"
+          title="Games"
+          summary="Games written by me or with my help."
+          icon="/logos/game-console.png"
+        />
+        <NavCard
+          className={styles.navCard}
+          href="/projects"
+          title="Projects"
+          summary="Software projects, websites, etc."
+          icon="/logos/anvil.png"
+        />
+        <NavCard
+          className={styles.navCard}
+          href="/musings"
+          title="Musings"
+          summary="Post-mortems, lessons learned, and other no sabo musings."
+          icon="/logos/article.png"
+        />
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://github.com/GlyphForged"
-          target="_blank"
-          rel="noopener">
-          <div className={styles.footer_logo}>
-            <Image
-              src="/logos/github-mark-white.svg"
-              alt="Github Logo"
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
-          Fork me on GitHub
-        </a>
-        <a
-          href="https://glyphforged.itch.io/"
-          target="_blank"
-          rel="noopener">
-          <div className={styles.footer_logo}>
-            <Image
-              src="/logos/itchio-textless-white.svg"
-              alt="Itch Logo"
-              layout="fill"
-              objectFit="cover"
-            />
-          </div>
-          Play my games on Itch
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }

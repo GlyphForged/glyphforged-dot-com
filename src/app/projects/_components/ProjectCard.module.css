@@ -1,0 +1,49 @@
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-self: center;
+  border: solid;
+  border-radius: 20px;
+  margin: 0.75rem 1rem;
+  padding: 0.75rem 1rem;
+  width: 80%;
+  min-width: 0;
+  height: auto;
+  min-height: 400px;
+  max-height: 550px;
+  max-width: 400px;
+  background-color: hsl(215, 20%, 10%);
+}
+
+@media (min-width: 800px) {
+  .card {
+    width: 20vw;
+    min-width: 275px;
+    height: 25vw;
+  }
+}
+
+.card h3 {
+  padding: 0.5rem 1rem;
+}
+
+.card p {
+  margin: 0.5rem 1rem;
+}
+
+.card:hover {
+  border-color: var(--pink);
+  box-shadow: 0 0 10px 5px var(--purple);
+}
+
+.card:hover h3 {
+  color: var(--pink);
+}
+
+.thumb {
+  aspect-ratio: 1/1;
+  width: 80%;
+  position: relative;
+  margin: 1rem;
+}
