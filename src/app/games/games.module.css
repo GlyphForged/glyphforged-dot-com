@@ -1,5 +1,5 @@
 .gamesPage {
-  margin: 6rem 2.5rem 1.5rem 1.5rem;
+  margin: 6rem 2.5rem 1.5rem 2.5rem;
   padding: 0 2rem;
 }
 .pageBlurb {
@@ -49,7 +49,7 @@
 }
 
 .individualGamePage {
-  margin: 1.5rem 2.5rem;
+  margin: 6rem 2.5rem 1.5rem 2.5rem;
   display: grid;
   justify-content: center;
 }
