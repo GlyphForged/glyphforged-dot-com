@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import styles from './NavCard.module.css';
 
 type cardProps = {
@@ -10,11 +10,17 @@ type cardProps = {
   className?: string;
 };
 
-export default function NavCard({ href, title, summary, icon, className }: cardProps) {
+export default function NavCard({
+  href,
+  title,
+  summary,
+  icon,
+  className,
+}: cardProps) {
   return (
     <Link
       href={href}
-      className={className}>
+      className={`${styles.card} ${className ?? ''}`}>
       <h3 className={styles.title}>{title}</h3>
       <div className={styles.iconContainer}>
         <Image

@@ -169,3 +169,39 @@ a.secondary {
     justify-content: center;
   }
 }
+
+.navCard {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 1rem;
+  border: 2px solid var(--foreground);
+  border-radius: 20px;
+  box-shadow: 0 0 5px var(--foreground);
+  padding: 0.5rem;
+}
+
+.navCard .summary {
+  padding: 0 0 1rem 2rem;
+}
+
+.navCard .iconContainer {
+  position: relative;
+  aspect-ratio: 1;
+  width: 75px;
+  height: auto;
+}
+
+.navCard .title {
+  margin: 1rem 2rem;
+}
+
+.navCard:hover,
+.navCard:focus-visible {
+  box-shadow: 0 0 15px var(--purple);
+  border-color: var(--pink);
+}
+
+.navCard:hover .title:hover,
+.navCard:focus-visible .title:hover {
+  color: var(--pink);
+}
