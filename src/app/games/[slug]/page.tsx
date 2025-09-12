@@ -48,9 +48,15 @@ export default async function GamesPage({
       ) : (
         <p>No embed yet. Coming soon...</p>
       )}
-      <p
-        className={styles.gameSummary}
-        dangerouslySetInnerHTML={{ __html: game.summary }}></p>
+      {game.fullSummary ? (
+        <p
+          className={styles.gameSummary}
+          dangerouslySetInnerHTML={{ __html: game.fullSummary }}></p>
+      ) : (
+        <p
+          className={styles.gameSummary}
+          dangerouslySetInnerHTML={{ __html: game.summary }}></p>
+      )}
       {game.sourceCode ? (
         <div className={styles.sourceCode}>
           <p>

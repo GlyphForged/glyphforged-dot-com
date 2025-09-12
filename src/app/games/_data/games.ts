@@ -3,6 +3,7 @@ export type Game = {
   title: string;
   summary: string;
   embed: string;
+  fullSummary?: string;
   sourceCode?: string;
   thumbnail?: string;
   alt?: string;
@@ -24,8 +25,9 @@ export const games: Game[] = [
   {
     slug: 'llc',
     title: 'Lunar Lander Corps',
-    summary: `A 3D Lunar Lander clone written for the 2025 20-Games Challenge Summer Game Jam. You are a member of a group of curious sentient robots living in a system of dozens of moons orbiting a gas giant. Help deliver supplies between landing pads on the latest target of the research corps. Earn points based on your landing, upgrade your lander, and blow up in spectacular fashion when you miss the pad. Don't worry, we saved a backup of your program.<br><br>Please note there is a known bug with mouse capture. You may need to either press backslash, or pause and click Resume to recapture the mouse cursor if the window does not automatically capture the mouse. Additionally, the hit box for the "Let's Fly" button after the tutorial appears to be off. If you struggle to find the hitbox, you can use tab and enter/space to select it.`,
+    summary: `A 3D Lunar Lander clone written for the 2025 20-Games Challenge Summer Game Jam. You are a member of a group of curious sentient robots living in a system of dozens of moons orbiting a gas giant. Help deliver supplies between landing pads on the latest target of the research corps. Earn points based on your landing, upgrade your lander, and blow up in spectacular fashion when you miss the pad. Don't worry, we saved a backup of your program.`,
     embed: `<iframe frameborder="0" src="https://itch.io/embed-upload/14851809?color=000000" allowfullscreen="" width="1366" height="788"><a href="https://nebulazerogames.itch.io/lunar-lander-corps">Play Lunar Lander Corps on itch.io</a></iframe>`,
+    fullSummary: `A 3D Lunar Lander clone written for the 2025 20-Games Challenge Summer Game Jam. You are a member of a group of curious sentient robots living in a system of dozens of moons orbiting a gas giant. Help deliver supplies between landing pads on the latest target of the research corps. Earn points based on your landing, upgrade your lander, and blow up in spectacular fashion when you miss the pad. Don't worry, we saved a backup of your program.<br><br>Please note there is a known bug with mouse capture. You may need to either press backslash, or pause and click Resume to recapture the mouse cursor if the window does not automatically capture the mouse. Additionally, the hit box for the "Let's Fly" button after the tutorial appears to be off. If you struggle to find the hitbox, you can use tab and enter/space to select it.`,
     sourceCode: 'https://github.com/GlyphForged/LunarLanderCorps',
     thumbnail: '/game-thumbs/llc.png',
     alt: 'Lunar Lander Corps Thumbnail',
