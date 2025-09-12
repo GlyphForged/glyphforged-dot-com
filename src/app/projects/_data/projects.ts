@@ -157,7 +157,7 @@ export const projects: Project[] = [
         aspect: '3/2',
         width: 640,
         sourceCode:
-          'https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FGlyphForged%2Fmq_shader_template%2Fblob%2Ftrunk%2Fsrc%2Fmain.rs&style=base16%2Fgruvbox-dark-hard&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=500',
+          'https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FGlyphForged%2FLearnRust%2Fblob%2Ftrunk%2Fnature_of_code%2Fchapter3%2Fbaton%2Fsrc%2Fmain.rs&style=base16%2Fgruvbox-dark-hard&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=500',
       },
       {
         id: 'spiral',
@@ -167,7 +167,8 @@ export const projects: Project[] = [
           "This sketch is a macroquad friendly interpretation of Exercise 3.5. As macroquad is geared more towards 2D game development, rather than a focus on artistic 'sketches' and creative coding in general like processing and p5.js, I have had to tweak the exercise a bit to instead create a spiral which has a long, but not permanent tail.",
         aspect: '3/2',
         width: 640,
-        sourceCode: '',
+        sourceCode:
+          'https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FGlyphForged%2FLearnRust%2Fblob%2Ftrunk%2Fnature_of_code%2Fchapter3%2Fspiral%2Fsrc%2Fmain.rs&style=base16%2Fgruvbox-dark-hard&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=500',
       },
       {
         id: 'emitter',
@@ -177,7 +178,8 @@ export const projects: Project[] = [
           "This sketch is a simple emitter which is tied to the mouse location. When the mouse is within the area of the sketch, the emitter will move to the mouse location, continuing to emite a steady stream of particles as it goes. There is constant 'gravity' which pulls the particles towards the bottom of the screen.",
         aspect: '3/2',
         width: 640,
-        sourceCode: '',
+        sourceCode:
+          'https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FGlyphForged%2FLearnRust%2Fblob%2Ftrunk%2Fnature_of_code%2Fchapter4%2Femitter%2Fsrc%2Femitter.rs&style=base16%2Fgruvbox-dark-hard&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=500',
       },
       {
         id: 'thruster',
@@ -187,7 +189,8 @@ export const projects: Project[] = [
           "<p>This sketch combines Exercises 4.2, 4.3, and 4.4, iterating on a previous example from Chapter 1. This showcases a custom emitter system which has been attached to the 'Mover' object from Exercise 1.5. The ship now creates a fiery trail of short lived particles which fade and disappear as the simulation runs.</p><h4>Controls</h4><ul><li>Up - Accelerate</li><li>Right/Left - Turn</li><li>Down - Brakes</li></ul>",
         aspect: '3/2',
         width: 640,
-        sourceCode: '',
+        sourceCode:
+          'https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FGlyphForged%2FLearnRust%2Fblob%2Ftrunk%2Fnature_of_code%2Fchapter4%2Fthruster%2Fsrc%2Fmain.rs&style=base16%2Fgruvbox-dark-hard&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=500',
       },
     ],
   },
