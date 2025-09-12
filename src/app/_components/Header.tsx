@@ -84,7 +84,6 @@ export default function Header({
           type="button"
           className={`${styles.hamburger} ${open ? styles.isOpen : ''}`}
           aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
           aria-controls="gf-nav-panel"
           onClick={() => setOpen((v) => !v)}>
           <span className={styles.hamburgerBar} />
