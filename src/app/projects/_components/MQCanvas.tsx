@@ -6,9 +6,9 @@ import styles from './MQCanvas.module.css';
 export type MQCanvasProps = {
   title: string;
   summary?: string;
-  src: string; // e.g. '/mq/boids/index.html'
-  aspect?: string; // CSS aspect-ratio like '16/9' or '4/3'
-  width?: number; // px fallback if no aspect provided
+  src: string;
+  aspect?: string;
+  width?: number;
   sourceCode?: string; // Source code for emgithub blob
 };
 
@@ -57,8 +57,6 @@ export default function MQCanvas({
           <iframe
             className={styles.sourceCode}
             style={style}
-            frameBorder="0"
-            scrolling="no"
             allow="clipboard-write"
             src={sourceCode}></iframe>
         ) : null}

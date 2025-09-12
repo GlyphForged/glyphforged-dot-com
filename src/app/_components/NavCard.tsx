@@ -7,13 +7,14 @@ type cardProps = {
   title: string;
   summary: string;
   icon: string;
+  className?: string;
 };
 
-export default function NavCard({ href, title, summary, icon }: cardProps) {
+export default function NavCard({ href, title, summary, icon, className }: cardProps) {
   return (
     <Link
       href={href}
-      className={styles.card}>
+      className={className}>
       <h3 className={styles.title}>{title}</h3>
       <div className={styles.iconContainer}>
         <Image

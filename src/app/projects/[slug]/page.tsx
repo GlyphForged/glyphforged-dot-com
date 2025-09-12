@@ -29,6 +29,7 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return notFound(); // Falls through to not-found.tsx
+  const demos = project.wasmDemos ?? [];
 
   return (
     <article className={styles.individualProjectPage}>
@@ -44,10 +45,10 @@ export default async function ProjectPage({
                 summary={d.summary}
                 src={d.src}
                 aspect={d.aspect}
-                height={d.height}
+                width={d.width}
                 sourceCode={d.sourceCode}
               />
-              {i < project.wasmDemos.length - 1 && <hr />}
+              {i < demos.length - 1 && <hr />}
             </div>
           ))}
         </div>
