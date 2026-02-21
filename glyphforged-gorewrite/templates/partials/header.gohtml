@@ -1,0 +1,18 @@
+{{define "site-header"}}
+<header class="site-header">
+  <div class="brand-chip">
+    <a href="/" aria-label="GlyphForged home">
+      <img src="/public/logos/gf-logo-wht.svg" alt="GlyphForged logo" width="34" height="34">
+    </a>
+    <div>
+      <p class="chip-label">GlyphForged Terminal</p>
+      <p class="chip-sub">alexandrite build v0.9</p>
+    </div>
+  </div>
+  <nav class="site-nav" aria-label="Primary">
+    {{range .NavItems}}
+    <a href="{{.Href}}" class="nav-link {{if eq $.CurrentPath .Href}}is-active{{end}}">{{.Label}}</a>
+    {{end}}
+  </nav>
+</header>
+{{end}}

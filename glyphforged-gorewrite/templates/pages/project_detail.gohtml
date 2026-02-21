@@ -1,0 +1,25 @@
+{{define "project-detail"}}
+<article class="detail-panel">
+  <h1>{{.Project.Title}}</h1>
+  {{if .Project.WasmDemos}}
+  {{range .Project.WasmDemos}}
+  <section class="demo-panel" id="{{.ID}}">
+    <h2>{{.Title}}</h2>
+    <div class="iframe-wrap">
+      <iframe src="{{.Src}}" title="{{.Title}} demo" loading="lazy"></iframe>
+    </div>
+    <div class="prose">{{safeHTML .Summary}}</div>
+    {{if .SourceCode}}
+    {{$slot := printf "demo-source-%s" .ID}}
+    <div id="{{$slot}}" class="source-slot">
+      <button class="source-toggle" hx-get="/partials/demo-source?project={{$.Project.Slug}}&demo={{.ID}}&state=show" hx-target="#{{$slot}}" hx-swap="outerHTML">Show Source Code</button>
+    </div>
+    {{end}}
+  </section>
+  {{end}}
+  {{else}}
+  <p>No web demos yet.</p>
+  {{end}}
+  <a class="back-link" href="/projects">Back to Projects</a>
+</article>
+{{end}}

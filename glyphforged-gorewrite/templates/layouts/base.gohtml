@@ -1,0 +1,47 @@
+{{define "base"}}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Page.PageTitle}} | {{.Page.Title}}</title>
+  <meta name="description" content="{{.Page.Description}}">
+  <link rel="icon" href="/public/favicon.ico">
+  <link rel="stylesheet" href="/static/css/app.css">
+  <script defer src="https://unpkg.com/htmx.org@2.0.4"></script>
+  <script defer src="/static/js/app.js"></script>
+</head>
+<body class="{{.Page.BodyClass}}">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  {{template "site-header" .Page}}
+  <div class="layout-grid">
+    <aside class="status-rail" aria-label="System status">
+      <div class="terminal-pane">
+        <p class="prompt">sys/status:</p>
+        <div id="system-status" hx-get="/partials/system-status" hx-trigger="load, every 7s" hx-swap="innerHTML">
+          <p class="status-line">booting telemetry...</p>
+        </div>
+      </div>
+    </aside>
+    <main id="main-content" class="main-shell">
+      {{if eq .PageName "home"}}
+        {{template "home" .Page}}
+      {{else if eq .PageName "games"}}
+        {{template "games" .Page}}
+      {{else if eq .PageName "game-detail"}}
+        {{template "game-detail" .Page}}
+      {{else if eq .PageName "projects"}}
+        {{template "projects" .Page}}
+      {{else if eq .PageName "project-detail"}}
+        {{template "project-detail" .Page}}
+      {{else if eq .PageName "musings"}}
+        {{template "musings" .Page}}
+      {{else}}
+        {{template "not-found" .Page}}
+      {{end}}
+    </main>
+  </div>
+  {{template "site-footer" .Page}}
+</body>
+</html>
+{{end}}

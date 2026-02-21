@@ -45,3 +45,5 @@ next-env.d.ts
 *.tar.gz
 /builds
 
+# screenshots
+/screenshots

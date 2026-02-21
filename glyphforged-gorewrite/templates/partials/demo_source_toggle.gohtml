@@ -1,0 +1,11 @@
+{{define "demo-source-toggle"}}
+{{$slot := printf "demo-source-%s" .Demo.ID}}
+<div id="{{$slot}}" class="source-slot">
+  {{if .Show}}
+  <button class="source-toggle" hx-get="/partials/demo-source?project={{.Project.Slug}}&demo={{.Demo.ID}}&state=hide" hx-target="#{{$slot}}" hx-swap="outerHTML">Hide Source Code</button>
+  <iframe class="source-frame" title="{{.Demo.Title}} source" loading="lazy" allow="clipboard-write" src="{{.Demo.SourceCode}}"></iframe>
+  {{else}}
+  <button class="source-toggle" hx-get="/partials/demo-source?project={{.Project.Slug}}&demo={{.Demo.ID}}&state=show" hx-target="#{{$slot}}" hx-swap="outerHTML">Show Source Code</button>
+  {{end}}
+</div>
+{{end}}

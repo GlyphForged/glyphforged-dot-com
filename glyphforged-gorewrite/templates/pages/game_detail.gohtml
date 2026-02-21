@@ -1,0 +1,21 @@
+{{define "game-detail"}}
+<article class="detail-panel">
+  <h1>{{.Game.Title}}</h1>
+  {{if .IsMobileEmbed}}
+  <p class="notice">This game wasn't designed for mobile, so the live embed is disabled here. Try desktop/laptop for the best experience.</p>
+  {{else}}
+  <div class="embed-shell">{{safeHTML .Game.Embed}}</div>
+  {{end}}
+
+  {{if .Game.FullSummary}}
+  <div class="prose">{{safeHTML .Game.FullSummary}}</div>
+  {{else}}
+  <div class="prose">{{safeHTML .Game.Summary}}</div>
+  {{end}}
+
+  {{if .Game.SourceCode}}
+  <p class="source-link">Source Code can be viewed <a href="{{.Game.SourceCode}}" target="_blank" rel="noopener">HERE</a></p>
+  {{end}}
+  <a class="back-link" href="/games">Back to Games</a>
+</article>
+{{end}}

@@ -1,0 +1,30 @@
+{{define "projects"}}
+<section class="page-head">
+  <h1>Projects</h1>
+  <div class="prose">
+    <p>These projects represent selections from my body of work which are, in my opinion, polished enough to see the light of day. For each project here, there are about a dozen languishing in the depths of my GitHub or one of my hard drives.</p>
+  </div>
+  <nav class="category-nav" aria-label="Project categories">
+    <span>Categories:</span>
+    {{range .GroupOrder}}<a href="#{{.}}">{{index $.GroupLabels .}}</a>{{end}}
+  </nav>
+</section>
+{{range .GroupOrder}}
+{{$group := .}}
+{{$items := index $.Grouped .}}
+{{if $items}}
+<section id="{{$group}}" class="project-group">
+  <h2>{{index $.GroupLabels $group}}</h2>
+  <div class="grid-cards">
+    {{range $items}}
+    <a href="/projects/{{.Slug}}" class="content-card project-card">
+      <img src="{{.Thumbnail}}" alt="{{.Alt}}">
+      <h3>{{.Title}}</h3>
+      <p>{{.Summary}}</p>
+    </a>
+    {{end}}
+  </div>
+</section>
+{{end}}
+{{end}}
+{{end}}
