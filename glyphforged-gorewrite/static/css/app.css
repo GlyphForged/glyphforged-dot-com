@@ -17,9 +17,10 @@
   --line: #344166;
   --ok: #6ef7b4;
   --warn: #f3d06d;
-  --mono: "JetBrains Mono", "Fira Code", "Cascadia Mono", monospace;
-  --body: "Segoe UI", "Inter", system-ui, sans-serif;
-  --display: "stormblade", var(--mono);
+  --mono: "IBM Plex Mono", "JetBrains Mono", "Cascadia Mono", "Fira Code", "SFMono-Regular", Menlo, Monaco, monospace;
+  --body: "IBM Plex Mono", "JetBrains Mono", "Cascadia Mono", "Fira Code", ui-monospace, monospace;
+  --header: "JetBrains Mono", "IBM Plex Mono", "Cascadia Mono", "SFMono-Regular", Menlo, Monaco, monospace;
+  --display: var(--header);
 }
 
 * {
@@ -64,7 +65,7 @@ h1,
 h2,
 h3 {
   font-family: var(--display);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   margin: 0;
 }
 
@@ -79,6 +80,7 @@ h2 {
 p,
 li {
   line-height: 1.5;
+  font-family: var(--body);
 }
 
 .skip-link {
@@ -124,14 +126,17 @@ li {
 
 .chip-label {
   margin: 0;
-  font-family: var(--mono);
+  font-family: var(--header);
+  font-weight: 600;
+  letter-spacing: 0.015em;
   font-size: 0.83rem;
   color: var(--teal);
 }
 
 .chip-sub {
   margin: 0;
-  font-family: var(--mono);
+  font-family: var(--header);
+  font-weight: 500;
   font-size: 0.74rem;
   color: var(--muted);
 }
@@ -147,7 +152,9 @@ li {
   padding: 0.38rem 0.7rem;
   border: 1px solid var(--line);
   border-radius: 0.45rem;
-  font-family: var(--mono);
+  font-family: var(--header);
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--muted);
 }
 
@@ -211,6 +218,7 @@ li {
   border-radius: 0.8rem;
   padding: clamp(1rem, 2vw, 1.7rem);
   background: linear-gradient(150deg, rgba(13, 17, 29, 0.86), rgba(27, 35, 58, 0.85));
+  overflow-x: hidden;
 }
 
 .hero-panel {
@@ -315,14 +323,23 @@ li {
 .detail-panel {
   display: grid;
   gap: 1rem;
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
 .embed-shell {
-  overflow-x: auto;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 0.7rem;
   padding: 0.35rem;
   background: #070911;
+}
+
+.embed-shell iframe {
+  width: 100% !important;
+  max-width: 100%;
+  min-height: clamp(420px, 68vh, 840px);
+  border: 0;
 }
 
 .notice {
@@ -347,15 +364,19 @@ li {
 }
 
 .iframe-wrap {
-  width: 100%;
+  position: relative;
+  width: min(100%, var(--demo-max, 960px));
+  margin: 0.5rem auto;
   aspect-ratio: 3 / 2;
   border: 1px solid var(--violet-dim);
   border-radius: 0.65rem;
   overflow: hidden;
-  margin: 0.5rem 0;
+  background: rgba(25, 25, 25, 0.5);
 }
 
 .iframe-wrap iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;

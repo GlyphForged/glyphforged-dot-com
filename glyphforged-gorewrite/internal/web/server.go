@@ -229,8 +229,17 @@ func (s *Server) musings(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) systemStatus(w http.ResponseWriter, r *http.Request) {
+	moods := []string{
+		"forging glyphs",
+		"calibrating retroencabulator",
+		"stabilizing runes",
+		"reticulating splines",
+		"prefamulating amulite",
+		"centering div",
+		"transmuting data",
+		"chanting binharic hymn",
+		"appeasing the machine spirit"}
 	load := rand.Intn(32) + 42
-	moods := []string{"forging UI", "compiling vibes", "stabilizing runes", "profiling goblins"}
 	payload := map[string]string{
 		"Time": time.Now().UTC().Format("2006-01-02 15:04:05 UTC"),
 		"Load": fmt.Sprintf("%d%%", load),

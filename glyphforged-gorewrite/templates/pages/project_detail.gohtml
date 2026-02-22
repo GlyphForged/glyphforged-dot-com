@@ -3,7 +3,7 @@
   <h1>{{.Project.Title}}</h1>
   {{if .Project.WasmDemos}}
   {{range .Project.WasmDemos}}
-  <section class="demo-panel" id="{{.ID}}">
+  <section class="demo-panel" id="{{.ID}}" style="--demo-max: {{if .Width}}{{.Width}}px{{else}}960px{{end}};">
     <h2>{{.Title}}</h2>
     <div class="iframe-wrap">
       <iframe src="{{.Src}}" title="{{.Title}} demo" loading="lazy"></iframe>
