@@ -744,6 +744,12 @@ li {
 }
 
 @media (max-width: 640px) {
+  body,
+  .ambient-bar,
+  body::after {
+    animation: none !important;
+  }
+
   .site-header {
     align-items: flex-start;
     flex-direction: column;
