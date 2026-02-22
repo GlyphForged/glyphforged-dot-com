@@ -43,7 +43,7 @@ type Server struct {
 }
 
 func NewServer() (*Server, error) {
-	funcMap := template.FuncMap{
+	templateFuncMap := template.FuncMap{
 		"safeHTML": func(s string) template.HTML {
 			return template.HTML(s)
 		},
@@ -51,28 +51,28 @@ func NewServer() (*Server, error) {
 		"nowYear": func() int { return time.Now().Year() },
 	}
 
-	cwd, err := os.Getwd()
+	workingDir, err := os.Getwd()
 	if err != nil {
 		return nil, fmt.Errorf("get cwd: %w", err)
 	}
-	rootDir, err := discoverProjectRoot(cwd)
+	rootDir, err := discoverProjectRoot(workingDir)
 	if err != nil {
 		return nil, err
 	}
 
-	patterns := []string{
+	templateGlobs := []string{
 		filepath.Join(rootDir, "templates/layouts/*.gohtml"),
 		filepath.Join(rootDir, "templates/partials/*.gohtml"),
 		filepath.Join(rootDir, "templates/pages/*.gohtml"),
 	}
 
-	tpl, err := template.New("site").Funcs(funcMap).ParseGlob(patterns[0])
+	tpl, err := template.New("site").Funcs(templateFuncMap).ParseGlob(templateGlobs[0])
 	if err != nil {
 		return nil, fmt.Errorf("parse layouts: %w", err)
 	}
-	for _, p := range patterns[1:] {
-		if _, err := tpl.ParseGlob(p); err != nil {
-			return nil, fmt.Errorf("parse %s: %w", p, err)
+	for _, globPattern := range templateGlobs[1:] {
+		if _, err := tpl.ParseGlob(globPattern); err != nil {
+			return nil, fmt.Errorf("parse %s: %w", globPattern, err)
 		}
 	}
 
@@ -83,42 +83,47 @@ func NewServer() (*Server, error) {
 }
 
 func (s *Server) Routes() http.Handler {
-	mux := http.NewServeMux()
+	router := http.NewServeMux()
 
 	staticRoot := filepath.Join(s.rootDir, "static")
-	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir(staticRoot))))
-	mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir(filepath.Join(staticRoot, "public")))))
+	// Static assets are split between authored files (`/static`) and migrated
+	// public assets (`/public`) to preserve existing URLs.
+	router.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir(staticRoot))))
+	router.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir(filepath.Join(staticRoot, "public")))))
 
-	mux.HandleFunc("/", s.home)
-	mux.HandleFunc("/games", s.gamesIndex)
-	mux.HandleFunc("/games/", s.gameDetail)
-	mux.HandleFunc("/projects", s.projectsIndex)
-	mux.HandleFunc("/projects/", s.projectDetail)
-	mux.HandleFunc("/musings", s.musings)
+	router.HandleFunc("/", s.home)
+	router.HandleFunc("/games", s.gamesIndex)
+	router.HandleFunc("/games/", s.gameDetail)
+	router.HandleFunc("/projects", s.projectsIndex)
+	router.HandleFunc("/projects/", s.projectDetail)
+	router.HandleFunc("/musings", s.musings)
 
-	mux.HandleFunc("/partials/system-status", s.systemStatus)
-	mux.HandleFunc("/partials/demo-source", s.demoSource)
+	router.HandleFunc("/partials/system-status", s.systemStatus)
+	router.HandleFunc("/partials/demo-source", s.demoSource)
 
-	return mux
+	return router
 }
 
-func (s *Server) render(w http.ResponseWriter, name string, data viewData) {
+// render always executes the shared base layout and selects the page body via PageName.
+func (s *Server) render(w http.ResponseWriter, pageTemplateName string, data viewData) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	if err := s.tpl.ExecuteTemplate(w, "base", map[string]any{
 		"Page":     data,
-		"PageName": name,
+		"PageName": pageTemplateName,
 	}); err != nil {
 		http.Error(w, "template error", http.StatusInternalServerError)
 	}
 }
 
-func (s *Server) renderPartial(w http.ResponseWriter, name string, data any) {
+// renderPartial executes a single named template without the base layout.
+func (s *Server) renderPartial(w http.ResponseWriter, partialTemplateName string, data any) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	if err := s.tpl.ExecuteTemplate(w, name, data); err != nil {
+	if err := s.tpl.ExecuteTemplate(w, partialTemplateName, data); err != nil {
 		http.Error(w, "partial render error", http.StatusInternalServerError)
 	}
 }
 
+// baseData centralizes shared page-level metadata used by the layout/header.
 func baseData(r *http.Request) viewData {
 	return viewData{
 		Title:       "GlyphForged.com",
@@ -137,11 +142,11 @@ func (s *Server) home(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	vd := baseData(r)
-	vd.PageTitle = "GlyphForged"
-	vd.Description = "Games, software, and musings"
-	vd.BodyClass = "home-page"
-	s.render(w, "home", vd)
+	pageData := baseData(r)
+	pageData.PageTitle = "GlyphForged"
+	pageData.Description = "Games, software, and musings"
+	pageData.BodyClass = "home-page"
+	s.render(w, "home", pageData)
 }
 
 func (s *Server) gamesIndex(w http.ResponseWriter, r *http.Request) {
@@ -149,11 +154,11 @@ func (s *Server) gamesIndex(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	vd := baseData(r)
-	vd.PageTitle = "Games"
-	vd.Description = "Game projects by GlyphForged"
-	vd.Games = data.Games
-	s.render(w, "games", vd)
+	pageData := baseData(r)
+	pageData.PageTitle = "Games"
+	pageData.Description = "Game projects by GlyphForged"
+	pageData.Games = data.Games
+	s.render(w, "games", pageData)
 }
 
 func (s *Server) gameDetail(w http.ResponseWriter, r *http.Request) {
@@ -169,12 +174,12 @@ func (s *Server) gameDetail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	vd := baseData(r)
-	vd.PageTitle = game.Title
-	vd.Description = game.Summary
-	vd.Game = game
-	vd.IsMobileEmbed = isMobileUA(r.UserAgent())
-	s.render(w, "game-detail", vd)
+	pageData := baseData(r)
+	pageData.PageTitle = game.Title
+	pageData.Description = game.Summary
+	pageData.Game = game
+	pageData.IsMobileEmbed = isMobileUA(r.UserAgent())
+	s.render(w, "game-detail", pageData)
 }
 
 func (s *Server) projectsIndex(w http.ResponseWriter, r *http.Request) {
@@ -183,17 +188,17 @@ func (s *Server) projectsIndex(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	vd := baseData(r)
-	vd.PageTitle = "Projects"
-	vd.Description = "Software and creative coding projects"
-	vd.Projects = data.Projects
-	vd.GroupOrder = []string{"noc", "shaders"}
-	vd.GroupLabels = map[string]string{"noc": "Nature of Code", "shaders": "Shaders"}
-	vd.Grouped = map[string][]data.Project{"noc": {}, "shaders": {}}
-	for _, p := range data.Projects {
-		vd.Grouped[p.Category] = append(vd.Grouped[p.Category], p)
+	pageData := baseData(r)
+	pageData.PageTitle = "Projects"
+	pageData.Description = "Software and creative coding projects"
+	pageData.Projects = data.Projects
+	pageData.GroupOrder = []string{"noc", "shaders"}
+	pageData.GroupLabels = map[string]string{"noc": "Nature of Code", "shaders": "Shaders"}
+	pageData.Grouped = map[string][]data.Project{"noc": {}, "shaders": {}}
+	for _, project := range data.Projects {
+		pageData.Grouped[project.Category] = append(pageData.Grouped[project.Category], project)
 	}
-	s.render(w, "projects", vd)
+	s.render(w, "projects", pageData)
 }
 
 func (s *Server) projectDetail(w http.ResponseWriter, r *http.Request) {
@@ -209,11 +214,11 @@ func (s *Server) projectDetail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	vd := baseData(r)
-	vd.PageTitle = project.Title
-	vd.Description = project.Summary
-	vd.Project = project
-	s.render(w, "project-detail", vd)
+	pageData := baseData(r)
+	pageData.PageTitle = project.Title
+	pageData.Description = project.Summary
+	pageData.Project = project
+	s.render(w, "project-detail", pageData)
 }
 
 func (s *Server) musings(w http.ResponseWriter, r *http.Request) {
@@ -221,15 +226,17 @@ func (s *Server) musings(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	vd := baseData(r)
-	vd.PageTitle = "Musings"
-	vd.Description = "Work in progress"
-	vd.BodyClass = "musings-page"
-	s.render(w, "musings", vd)
+	pageData := baseData(r)
+	pageData.PageTitle = "Musings"
+	pageData.Description = "Work in progress"
+	pageData.BodyClass = "musings-page"
+	s.render(w, "musings", pageData)
 }
 
 func (s *Server) systemStatus(w http.ResponseWriter, r *http.Request) {
-	moods := []string{
+	// This endpoint intentionally returns lightweight synthetic status text to
+	// make the terminal rail feel "live" without backend dependencies.
+	statusMoods := []string{
 		"forging glyphs",
 		"calibrating retroencabulator",
 		"stabilizing runes",
@@ -239,65 +246,72 @@ func (s *Server) systemStatus(w http.ResponseWriter, r *http.Request) {
 		"transmuting data",
 		"chanting binharic hymn",
 		"appeasing the machine spirit"}
-	load := rand.Intn(32) + 42
-	payload := map[string]string{
+	syntheticLoadPercent := rand.Intn(32) + 42
+	statusPayload := map[string]string{
 		"Time": time.Now().UTC().Format("2006-01-02 15:04:05 UTC"),
-		"Load": fmt.Sprintf("%d%%", load),
-		"Mood": moods[rand.Intn(len(moods))],
+		"Load": fmt.Sprintf("%d%%", syntheticLoadPercent),
+		"Mood": statusMoods[rand.Intn(len(statusMoods))],
 	}
-	s.renderPartial(w, "status-line", payload)
+	s.renderPartial(w, "status-line", statusPayload)
 }
 
 func (s *Server) demoSource(w http.ResponseWriter, r *http.Request) {
-	project := data.GetProjectBySlug(r.URL.Query().Get("project"))
-	demo := data.GetDemoByID(project, r.URL.Query().Get("demo"))
+	projectSlug := r.URL.Query().Get("project")
+	demoID := r.URL.Query().Get("demo")
+	project := data.GetProjectBySlug(projectSlug)
+	demo := data.GetDemoByID(project, demoID)
 	if project == nil || demo == nil {
 		http.Error(w, "demo not found", http.StatusNotFound)
 		return
 	}
 
-	state := r.URL.Query().Get("state")
-	show := state == "show"
+	// HTMX sends `state=show|hide`; default is hidden when absent/unknown.
+	desiredState := r.URL.Query().Get("state")
+	shouldShowSource := desiredState == "show"
 	s.renderPartial(w, "demo-source-toggle", map[string]any{
 		"Project": project,
 		"Demo":    demo,
-		"Show":    show,
+		"Show":    shouldShowSource,
 	})
 }
 
-func isMobileUA(ua string) bool {
-	if ua == "" {
+// isMobileUA provides a coarse signal for pages where desktop embeds can be
+// problematic on phones/tablets.
+func isMobileUA(userAgent string) bool {
+	if userAgent == "" {
 		return false
 	}
-	ua = strings.ToLower(ua)
-	needles := []string{"mobi", "android", "iphone", "ipad", "ipod", "windows phone", "webos"}
-	for _, n := range needles {
-		if strings.Contains(ua, n) {
+	userAgent = strings.ToLower(userAgent)
+	mobileMarkers := []string{"mobi", "android", "iphone", "ipad", "ipod", "windows phone", "webos"}
+	for _, marker := range mobileMarkers {
+		if strings.Contains(userAgent, marker) {
 			return true
 		}
 	}
 	return false
 }
 
+// discoverProjectRoot walks upward from the current working directory until it
+// finds both templates and static assets.
 func discoverProjectRoot(start string) (string, error) {
-	// Search up from current working directory so `go run .` works from repo root
-	// and from `cmd/site`.
-	cur := filepath.Clean(start)
-	for i := 0; i < 8; i++ {
-		layoutsGlob := filepath.Join(cur, "templates/layouts/*.gohtml")
-		staticDir := filepath.Join(cur, "static")
+	// Search up from current working directory so `go run .` works from repo
+	// root and from `cmd/site`.
+	currentDir := filepath.Clean(start)
+	for depth := 0; depth < 8; depth++ {
+		layoutsGlob := filepath.Join(currentDir, "templates/layouts/*.gohtml")
+		staticDir := filepath.Join(currentDir, "static")
 		layoutMatches, _ := filepath.Glob(layoutsGlob)
 		if len(layoutMatches) > 0 {
-			if fi, err := os.Stat(staticDir); err == nil && fi.IsDir() {
-				return cur, nil
+			if staticInfo, err := os.Stat(staticDir); err == nil && staticInfo.IsDir() {
+				return currentDir, nil
 			}
 		}
 
-		parent := filepath.Dir(cur)
-		if parent == cur {
+		parentDir := filepath.Dir(currentDir)
+		if parentDir == currentDir {
 			break
 		}
-		cur = parent
+		currentDir = parentDir
 	}
 
 	return "", fmt.Errorf("project root not found from %q: expected templates/ and static/", start)

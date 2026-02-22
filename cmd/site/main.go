@@ -9,18 +9,18 @@ import (
 )
 
 func main() {
-	addr := os.Getenv("ADDR")
-	if addr == "" {
-		addr = ":8080"
+	listenAddr := os.Getenv("ADDR")
+	if listenAddr == "" {
+		listenAddr = ":8080"
 	}
 
-	srv, err := web.NewServer()
+	server, err := web.NewServer()
 	if err != nil {
 		log.Fatalf("failed to build server: %v", err)
 	}
 
-	log.Printf("glyphforged-gorewrite listening on %s", addr)
-	if err := http.ListenAndServe(addr, srv.Routes()); err != nil {
+	log.Printf("glyphforged-gorewrite listening on %s", listenAddr)
+	if err := http.ListenAndServe(listenAddr, server.Routes()); err != nil {
 		log.Fatalf("server stopped: %v", err)
 	}
 }
