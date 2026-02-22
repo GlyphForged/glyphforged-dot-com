@@ -21,6 +21,7 @@
   --body: "IBM Plex Mono", "JetBrains Mono", "Cascadia Mono", "Fira Code", ui-monospace, monospace;
   --header: "JetBrains Mono", "IBM Plex Mono", "Cascadia Mono", "SFMono-Regular", Menlo, Monaco, monospace;
   --display: var(--header);
+  --ambient-speed-multiplier: 2.5;
 }
 
 * {
@@ -36,10 +37,13 @@ body {
 body {
   color: var(--ink);
   font-family: var(--body);
+  position: relative;
   background:
-    radial-gradient(circle at 10% 20%, rgba(69, 240, 214, 0.18), transparent 32%),
-    radial-gradient(circle at 85% 8%, rgba(173, 67, 244, 0.2), transparent 30%),
+    radial-gradient(circle at 11% 18%, rgba(78, 228, 214, 0.14), transparent 30%),
+    radial-gradient(circle at 84% 9%, rgba(139, 87, 205, 0.16), transparent 32%),
     linear-gradient(155deg, var(--bg0), var(--bg1) 48%, var(--bg2));
+  background-size: 130% 130%, 125% 125%, 100% 100%;
+  animation: ambient-shift calc(140s / var(--ambient-speed-multiplier)) ease-in-out infinite alternate;
 }
 
 body::before {
@@ -50,6 +54,24 @@ body::before {
   opacity: 0.18;
   background-image: linear-gradient(transparent 96%, rgba(109, 125, 173, 0.45) 100%);
   background-size: 100% 0.25rem;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -10% 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(176, 234, 255, 0.05) 49%,
+    rgba(190, 166, 246, 0.065) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  animation: linscan calc(22s / var(--ambient-speed-multiplier)) linear infinite;
 }
 
 a {
@@ -428,10 +450,123 @@ li {
   background: rgba(9, 13, 22, 0.95);
 }
 
+.layout-grid,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.ambient-bars {
+  position: fixed;
+  inset: -14vh -16vw;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.62;
+  isolation: isolate;
+}
+
+.ambient-bar {
+  --bar-width: clamp(38rem, 92vw, 122rem);
+  --bar-height: clamp(7rem, 18vh, 15rem);
+  position: absolute;
+  width: var(--bar-width);
+  height: var(--bar-height);
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0),
+      rgba(99, 236, 209, 0.12) 26%,
+      rgba(166, 122, 236, 0.15) 52%,
+      rgba(77, 214, 193, 0.1) 74%,
+      rgba(0, 0, 0, 0)
+    );
+  box-shadow:
+    0 0 42px rgba(71, 232, 210, 0.2),
+    0 0 86px rgba(148, 98, 214, 0.19),
+    0 0 140px rgba(118, 163, 243, 0.12);
+  filter: blur(24px) saturate(112%);
+  mix-blend-mode: screen;
+  transform: translate3d(0, 0, 0);
+}
+
+.ambient-bar-a {
+  top: 8%;
+  left: -38%;
+  z-index: 1;
+  animation:
+    bokeh-drift-a calc(170s / var(--ambient-speed-multiplier)) ease-in-out infinite,
+    bokeh-pulse calc(47s / var(--ambient-speed-multiplier)) ease-in-out infinite;
+}
+
+.ambient-bar-b {
+  top: 20%;
+  left: 34%;
+  --bar-width: clamp(44rem, 108vw, 142rem);
+  --bar-height: clamp(8rem, 22vh, 17rem);
+  z-index: 3;
+  animation:
+    bokeh-drift-b calc(196s / var(--ambient-speed-multiplier)) ease-in-out infinite,
+    bokeh-pulse calc(53s / var(--ambient-speed-multiplier)) ease-in-out infinite reverse;
+}
+
+.ambient-bar-c {
+  top: 38%;
+  left: -30%;
+  --bar-width: clamp(41rem, 101vw, 138rem);
+  --bar-height: clamp(8rem, 20vh, 17rem);
+  z-index: 2;
+  animation:
+    bokeh-drift-c calc(184s / var(--ambient-speed-multiplier)) ease-in-out infinite,
+    bokeh-pulse calc(44s / var(--ambient-speed-multiplier)) ease-in-out infinite;
+}
+
+.ambient-bar-d {
+  top: 54%;
+  left: 26%;
+  --bar-width: clamp(34rem, 86vw, 118rem);
+  --bar-height: clamp(7rem, 16vh, 14rem);
+  z-index: 0;
+  animation:
+    bokeh-drift-d calc(152s / var(--ambient-speed-multiplier)) ease-in-out infinite,
+    bokeh-pulse calc(40s / var(--ambient-speed-multiplier)) ease-in-out infinite reverse;
+}
+
+.ambient-bar-e {
+  top: 70%;
+  left: -40%;
+  --bar-width: clamp(46rem, 112vw, 154rem);
+  --bar-height: clamp(9rem, 22vh, 19rem);
+  z-index: 4;
+  animation:
+    bokeh-drift-e calc(208s / var(--ambient-speed-multiplier)) ease-in-out infinite,
+    bokeh-pulse calc(59s / var(--ambient-speed-multiplier)) ease-in-out infinite;
+}
+
+.ambient-bar-f {
+  top: 84%;
+  left: 28%;
+  --bar-width: clamp(33rem, 82vw, 112rem);
+  --bar-height: clamp(6rem, 15vh, 13rem);
+  z-index: 1;
+  animation:
+    bokeh-drift-f calc(176s / var(--ambient-speed-multiplier)) ease-in-out infinite,
+    bokeh-pulse calc(36s / var(--ambient-speed-multiplier)) ease-in-out infinite reverse;
+}
+
 .bar-fill {
   height: 100%;
   width: 35%;
-  background: linear-gradient(90deg, var(--violet), var(--teal));
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(12.5% - 1px),
+      rgba(15, 19, 34, 0.55) calc(12.5% - 1px),
+      rgba(15, 19, 34, 0.55) 12.5%
+    ),
+    linear-gradient(90deg, var(--violet), var(--teal));
   box-shadow: 0 0 1rem rgba(69, 240, 214, 0.4);
   animation: load-insanity 1.8s linear infinite alternate;
 }
@@ -444,6 +579,68 @@ li {
 @keyframes load-insanity {
   0% { transform: translateX(-10%); }
   100% { transform: translateX(190%); }
+}
+
+@keyframes bokeh-drift-a {
+  0% { transform: translate3d(-14vw, 3vh, 0) rotate(-11deg); }
+  50% { transform: translate3d(8vw, -2vh, 0) rotate(-7deg); }
+  100% { transform: translate3d(26vw, 1vh, 0) rotate(-10deg); }
+}
+
+@keyframes bokeh-drift-b {
+  0% { transform: translate3d(8vw, -5vh, 0) rotate(8deg); }
+  50% { transform: translate3d(-7vw, 4vh, 0) rotate(13deg); }
+  100% { transform: translate3d(-22vw, -1vh, 0) rotate(9deg); }
+}
+
+@keyframes bokeh-drift-c {
+  0% { transform: translate3d(-12vw, 2vh, 0) rotate(-4deg); }
+  50% { transform: translate3d(10vw, -5vh, 0) rotate(2deg); }
+  100% { transform: translate3d(32vw, 3vh, 0) rotate(-3deg); }
+}
+
+@keyframes bokeh-drift-d {
+  0% { transform: translate3d(5vw, -2vh, 0) rotate(6deg); }
+  50% { transform: translate3d(-9vw, 3vh, 0) rotate(1deg); }
+  100% { transform: translate3d(-24vw, -3vh, 0) rotate(5deg); }
+}
+
+@keyframes bokeh-drift-e {
+  0% { transform: translate3d(-16vw, 2vh, 0) rotate(-9deg); }
+  50% { transform: translate3d(6vw, -4vh, 0) rotate(-14deg); }
+  100% { transform: translate3d(27vw, 3vh, 0) rotate(-10deg); }
+}
+
+@keyframes bokeh-drift-f {
+  0% { transform: translate3d(10vw, -1vh, 0) rotate(7deg); }
+  50% { transform: translate3d(-8vw, 4vh, 0) rotate(3deg); }
+  100% { transform: translate3d(-28vw, -2vh, 0) rotate(6deg); }
+}
+
+@keyframes bokeh-pulse {
+  0% { opacity: 0.36; }
+  50% { opacity: 0.66; }
+  100% { opacity: 0.4; }
+}
+
+@keyframes linscan {
+  0% { transform: translateY(-55%); }
+  100% { transform: translateY(55%); }
+}
+
+@keyframes ambient-shift {
+  0% {
+    background-position: 8% 22%, 84% 10%, 50% 50%;
+    background-size: 130% 130%, 125% 125%, 100% 100%;
+  }
+  50% {
+    background-position: 16% 18%, 76% 14%, 48% 52%;
+    background-size: 135% 132%, 128% 130%, 102% 102%;
+  }
+  100% {
+    background-position: 12% 26%, 88% 7%, 52% 48%;
+    background-size: 132% 136%, 122% 126%, 101% 101%;
+  }
 }
 
 .site-footer {
@@ -460,10 +657,44 @@ li {
   flex-wrap: wrap;
 }
 
+.ambient-speed-control {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  color: var(--muted);
+}
+
+.ambient-speed-control label {
+  font-size: 0.8rem;
+  color: var(--teal);
+  white-space: nowrap;
+}
+
+.ambient-speed-control input[type="range"] {
+  width: min(180px, 50vw);
+  accent-color: var(--teal);
+}
+
+.ambient-speed-control output {
+  min-width: 3.4ch;
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
 .footer-links {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .ambient-bar,
+  body::after {
+    animation: none !important;
+  }
 }
 
 @media (max-width: 960px) {

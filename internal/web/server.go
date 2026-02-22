@@ -25,6 +25,7 @@ type viewData struct {
 	Description string
 	NavItems    []navItem
 	BodyClass   string
+	ShowAmbientSpeedControl bool
 
 	Games         []data.Game
 	Game          *data.Game
@@ -40,9 +41,14 @@ type viewData struct {
 type Server struct {
 	tpl     *template.Template
 	rootDir string
+	config  Config
 }
 
-func NewServer() (*Server, error) {
+type Config struct {
+	ShowAmbientSpeedControl bool
+}
+
+func NewServer(config Config) (*Server, error) {
 	templateFuncMap := template.FuncMap{
 		"safeHTML": func(s string) template.HTML {
 			return template.HTML(s)
@@ -79,6 +85,7 @@ func NewServer() (*Server, error) {
 	return &Server{
 		tpl:     tpl,
 		rootDir: rootDir,
+		config:  config,
 	}, nil
 }
 
@@ -124,10 +131,11 @@ func (s *Server) renderPartial(w http.ResponseWriter, partialTemplateName string
 }
 
 // baseData centralizes shared page-level metadata used by the layout/header.
-func baseData(r *http.Request) viewData {
+func baseData(r *http.Request, showAmbientSpeedControl bool) viewData {
 	return viewData{
 		Title:       "GlyphForged.com",
 		CurrentPath: r.URL.Path,
+		ShowAmbientSpeedControl: showAmbientSpeedControl,
 		NavItems: []navItem{
 			{Label: "Home", Href: "/"},
 			{Label: "Games", Href: "/games"},
@@ -142,7 +150,7 @@ func (s *Server) home(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	pageData := baseData(r)
+	pageData := baseData(r, s.config.ShowAmbientSpeedControl)
 	pageData.PageTitle = "GlyphForged"
 	pageData.Description = "Games, software, and musings"
 	pageData.BodyClass = "home-page"
@@ -154,7 +162,7 @@ func (s *Server) gamesIndex(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	pageData := baseData(r)
+	pageData := baseData(r, s.config.ShowAmbientSpeedControl)
 	pageData.PageTitle = "Games"
 	pageData.Description = "Game projects by GlyphForged"
 	pageData.Games = data.Games
@@ -174,7 +182,7 @@ func (s *Server) gameDetail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pageData := baseData(r)
+	pageData := baseData(r, s.config.ShowAmbientSpeedControl)
 	pageData.PageTitle = game.Title
 	pageData.Description = game.Summary
 	pageData.Game = game
@@ -188,7 +196,7 @@ func (s *Server) projectsIndex(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pageData := baseData(r)
+	pageData := baseData(r, s.config.ShowAmbientSpeedControl)
 	pageData.PageTitle = "Projects"
 	pageData.Description = "Software and creative coding projects"
 	pageData.Projects = data.Projects
@@ -214,7 +222,7 @@ func (s *Server) projectDetail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pageData := baseData(r)
+	pageData := baseData(r, s.config.ShowAmbientSpeedControl)
 	pageData.PageTitle = project.Title
 	pageData.Description = project.Summary
 	pageData.Project = project
@@ -226,7 +234,7 @@ func (s *Server) musings(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	pageData := baseData(r)
+	pageData := baseData(r, s.config.ShowAmbientSpeedControl)
 	pageData.PageTitle = "Musings"
 	pageData.Description = "Work in progress"
 	pageData.BodyClass = "musings-page"

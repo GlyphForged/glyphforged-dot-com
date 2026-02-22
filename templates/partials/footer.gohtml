@@ -1,9 +1,17 @@
 {{define "site-footer"}}
 <footer class="site-footer">
-  <p>© {{nowYear}} GlyphForged</p>
+  <p>&copy; {{nowYear}} GlyphForged</p>
+  {{/* EXPERIMENTAL: Remove this control block once ambient speed tuning is finalized. */}}
+  {{if .ShowAmbientSpeedControl}}
+  <div class="ambient-speed-control" data-experimental-control="ambient-speed">
+    <label for="ambient-speed-slider">Experimental ambient speed</label>
+    <input id="ambient-speed-slider" type="range" min="0.4" max="5.0" value="2.5" step="0.1" data-ambient-speed-slider>
+    <output id="ambient-speed-output" for="ambient-speed-slider">2.5x</output>
+  </div>
+  {{end}}
   <div class="footer-links">
-    <a href="https://github.com/GlyphForged" target="_blank" rel="noopener">Fork me on GitHub</a>
-    <a href="https://glyphforged.itch.io/" target="_blank" rel="noopener">Play my games on Itch</a>
+    | <a href="https://github.com/GlyphForged" target="_blank" rel="noopener">Fork me on GitHub</a> |
+    <a href="https://glyphforged.itch.io/" target="_blank" rel="noopener">Play my games on Itch</a> |
   </div>
 </footer>
 {{end}}

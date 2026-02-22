@@ -13,12 +13,20 @@
 </head>
 <body class="{{.Page.BodyClass}}">
   <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="ambient-bars" aria-hidden="true">
+    <span class="ambient-bar ambient-bar-a"></span>
+    <span class="ambient-bar ambient-bar-b"></span>
+    <span class="ambient-bar ambient-bar-c"></span>
+    <span class="ambient-bar ambient-bar-d"></span>
+    <span class="ambient-bar ambient-bar-e"></span>
+    <span class="ambient-bar ambient-bar-f"></span>
+  </div>
   {{template "site-header" .Page}}
   <div class="layout-grid">
     <aside class="status-rail" aria-label="System status">
       <div class="terminal-pane">
         <p class="prompt">sys/status:</p>
-        <div id="system-status" hx-get="/partials/system-status" hx-trigger="load, every 7s" hx-swap="innerHTML">
+        <div id="system-status" hx-get="/partials/system-status" hx-trigger="load, every 21s" hx-swap="innerHTML">
           <p class="status-line">booting telemetry...</p>
         </div>
       </div>
