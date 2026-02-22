@@ -466,6 +466,42 @@ li {
   isolation: isolate;
 }
 
+.ambient-bars::before,
+.ambient-bars::after {
+  content: "";
+  position: absolute;
+  inset: -12vh -8vw;
+  pointer-events: none;
+}
+
+.ambient-bars::before {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 223, 255, 0.02) 0,
+      rgba(120, 223, 255, 0.02) 1px,
+      rgba(0, 0, 0, 0) 1px,
+      rgba(0, 0, 0, 0) 3px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(179, 146, 255, 0.03) 0,
+      rgba(179, 146, 255, 0.03) 1px,
+      rgba(0, 0, 0, 0) 1px,
+      rgba(0, 0, 0, 0) 4px
+    );
+  mix-blend-mode: screen;
+  opacity: 0.42;
+}
+
+.ambient-bars::after {
+  background:
+    radial-gradient(120% 90% at 50% 50%, rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 0.19) 100%),
+    radial-gradient(100% 70% at 50% 110%, rgba(10, 12, 20, 0), rgba(10, 12, 20, 0.2));
+  mix-blend-mode: multiply;
+  opacity: 0.34;
+}
+
 .ambient-bar {
   --bar-width: clamp(38rem, 92vw, 122rem);
   --bar-height: clamp(7rem, 18vh, 15rem);
